@@ -1,0 +1,23 @@
+{
+  "name": "pdfbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "homfarnam",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-fetch": "2.0.0",
+    "pdf-extractor": "^2.2.0",
+    "request": "^2.88.2",
+    "telegraf": "^4.10.0",
+    "telegram": "^2.12.8",
+    "tiny-db": "^0.0.0",
+    "tinydb": "^0.1.0"
+  }
+}
