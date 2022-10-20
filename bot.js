@@ -45,10 +45,6 @@ const pdfExtractor = (url) =>
     JPGCanvasRenderer: JPGCanvasRenderer,
   });
 
-let pageLength = 0;
-
-console.log(process.env.STRING_SESSION);
-
 const stringSession = process.env.STRING_SESSION;
 
 const apiId = proccess.env.API_ID;
@@ -70,8 +66,6 @@ const apiHash = proccess.env.API_HASH;
       fs.rmSync(`./images/${chatID}`, { recursive: true });
     }
 
-    console.log('message: ', update.message);
-    // check if the message is a /start command and send a welcome message
     if (update.message.message.startsWith('/start')) {
       client.sendMessage(chatID, {
         message:
@@ -88,8 +82,6 @@ const apiHash = proccess.env.API_HASH;
       });
 
       const chatFolderID = `./images/${chatID}`;
-
-      const fileId = update.message.document.id.value;
 
       if (!fs.existsSync(chatFolderID)) {
         fs.mkdir(path.join('./images/', `${chatID}`), (err) => {
@@ -110,8 +102,6 @@ const apiHash = proccess.env.API_HASH;
         await pdfExtractor(`./images/${chatID}`)
           .parse(`./images/${chatID}/pdfData.pdf`)
           .then((res) => {
-            pageLength = res.jsonData.numpages;
-
             console.log('# End of Document - done');
           })
           .catch(function (err) {
@@ -131,10 +121,8 @@ const apiHash = proccess.env.API_HASH;
         return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
       });
 
-      console.log('sortedFiles: ', sortedFiles);
       for (const file of sortedFiles) {
-        console.log({ file });
-
+        console.log('file: ', file);
         await client.sendFile(chatID, {
           file: `./images/${chatID}/${file}`,
         });
